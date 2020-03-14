@@ -1,0 +1,12 @@
+package stores
+
+const (
+	DB_NAME = "genee"
+)
+
+var (
+	MONGOHOSTS_WORKSTATION = []stringgenee-mongodb-replicaset-0",
+		"genee-mongodb-replicaset-1",
+		"genee-mongodb-replicaset-2",
+	}
+)

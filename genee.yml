@@ -1,0 +1,10 @@
+vars:
+  - name: service_name
+    value: test-service
+  - name: port
+    value: 7001
+  - name: docker_registry
+    value: pineappleworkshop
+commands:
+  - go mod init {{<service_name>}}
+  - go mod tidy

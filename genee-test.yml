@@ -1,0 +1,12 @@
+vars:
+  - name: service_name
+    value: genee-test
+  - name: port
+    value: 7001
+  - name: docker_registry
+    value: pineappleworkshop
+  - name: db_name
+    value: genee
+commands:
+  - go mod init {{<service_name>}}
+  - go mod tidy
