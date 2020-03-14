@@ -5,7 +5,9 @@ const (
 )
 
 var (
-	MONGOHOSTS_WORKSTATION = []stringgenee-mongodb-replicaset-0",
+	MONGOHOSTS_WORKSTATION = []string{"localhost:27017"}
+	MONGOHOSTS_CLUSTER     = []string{
+		"genee-mongodb-replicaset-0",
 		"genee-mongodb-replicaset-1",
 		"genee-mongodb-replicaset-2",
 	}

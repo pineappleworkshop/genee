@@ -86,4 +86,8 @@ func gen(template, destination, config string) {
 	if err := services.GenerateFiles(conf, template, destination, files); err != nil {
 		errExit(err)
 	}
+
+	if err := services.RunCommands(destination, conf.Commands); err != nil {
+		errExit(err)
+	}
 }

@@ -11,10 +11,10 @@ import (
 )
 
 func GenerateRoot(path string) error {
-	fmt.Println("-=-=-=-=-")
-	fmt.Println("GenerateRoot")
-	fmt.Println(path)
-	fmt.Println("-=-=-=-=-")
+	//fmt.Println("-=-=-=-=-")
+	//fmt.Println("GenerateRoot")
+	//fmt.Println(path)
+	//fmt.Println("-=-=-=-=-")
 	if err := os.MkdirAll(path, 0777); err != nil {
 		return err
 	}
@@ -23,13 +23,13 @@ func GenerateRoot(path string) error {
 }
 
 func GenerateDirs(path string, dirs []string) error {
-	fmt.Println("-=-=-=-=-")
-	fmt.Println("GenerateDirs")
-	fmt.Println(path)
-	for _, dir := range dirs {
-		fmt.Println(dir)
-	}
-	fmt.Println("-=-=-=-=-")
+	//fmt.Println("-=-=-=-=-")
+	//fmt.Println("GenerateDirs")
+	//fmt.Println(path)
+	//for _, dir := range dirs {
+	//	fmt.Println(dir)
+	//}
+	//fmt.Println("-=-=-=-=-")
 	var dirsParsed []string
 	for _, dir := range dirs {
 		dirArray := strings.Split(dir, "/")
@@ -55,14 +55,14 @@ func GenerateDirs(path string, dirs []string) error {
 }
 
 func GenerateFiles(c *models.Config, template, destination string, filePaths []string) error {
-	fmt.Println("-=-=-=-=-")
-	fmt.Println("GenerateDirs")
-	fmt.Println(template)
-	fmt.Println(destination)
-	for _, filePath := range filePaths {
-		fmt.Println(filePath)
-	}
-	fmt.Println("-=-=-=-=-")
+	//fmt.Println("-=-=-=-=-")
+	//fmt.Println("GenerateDirs")
+	//fmt.Println(template)
+	//fmt.Println(destination)
+	//for _, filePath := range filePaths {
+	//	fmt.Println(filePath)
+	//}
+	//fmt.Println("-=-=-=-=-")
 	var files []models.File
 	for _, filesPath := range filePaths {
 		fileArray := strings.Split(filesPath, "/")

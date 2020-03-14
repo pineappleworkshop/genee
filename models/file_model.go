@@ -90,6 +90,15 @@ func (f *File) parseAndReplaceVar(c *Config, fileStr string) (string, error) {
 			}
 		}
 
+		if begin1 != begin2-1 {
+			begin1 = -1
+			begin2 = -1
+			begin3 = -1
+			end1 = -1
+			end2 = -1
+			end3 = -1
+		}
+
 		if end3 != -1 {
 			break
 		}
@@ -202,6 +211,15 @@ func (f *File) countVars() int {
 					continue
 				}
 			}
+		}
+
+		if begin1 != begin2-1 {
+			begin1 = -1
+			begin2 = -1
+			begin3 = -1
+			end1 = -1
+			end2 = -1
+			end3 = -1
 		}
 
 		if end3 != -1 {
