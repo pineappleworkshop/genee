@@ -10,12 +10,12 @@ import (
 )
 
 var (
-	genCmd = &cobra.Command{
-		Use:   "gen",
+	projectCmd = &cobra.Command{
+		Use:   "project",
 		Short: "Generates a microservice project from a template",
 		Long:  "Generates a microservice project from a template",
 		Run: func(cmd *cobra.Command, args []string) {
-			template, err := cmd.Flags().GetString(CMD_GEN_TEMPLATE_LONG)
+			template, err := cmd.Flags().GetString(CMD_PROJECT_TEMPLATE_LONG)
 			if err != nil {
 				errExit(err)
 			}
@@ -24,7 +24,7 @@ var (
 				errExit(err)
 			}
 
-			destination, err := cmd.Flags().GetString(CMD_GEN_DESTINATION_LONG)
+			destination, err := cmd.Flags().GetString(CMD_PROJECT_DESTINATION_LONG)
 			if err != nil {
 				errExit(err)
 			}
@@ -33,7 +33,7 @@ var (
 				errExit(err)
 			}
 
-			config, err := cmd.Flags().GetString(CMD_GEN_CONFIG_LONG)
+			config, err := cmd.Flags().GetString(CMD_PROJECT_CONFIG_LONG)
 			if err != nil {
 				errExit(err)
 			}
@@ -42,24 +42,24 @@ var (
 				errExit(err)
 			}
 
-			gen(template, destination, config)
+			project(template, destination, config)
 		},
 	}
 )
 
 func init() {
-	genCmd.Flags().StringP(CMD_GEN_TEMPLATE_LONG, CMD_GEN_TEMPLATE_SHORT, "", CMD_GEN_TEMPLATE_USAGE)
-	genCmd.Flags().StringP(CMD_GEN_DESTINATION_LONG, CMD_GEN_DESTINATION_SHORT, "", CMD_GEN_DESTINATION_USAGE)
-	genCmd.Flags().StringP(CMD_GEN_CONFIG_LONG, CMD_GEN_CONFIG_SHORT, "", CMD_GEN_CONFIG_USAGE)
-	rootCmd.AddCommand(genCmd)
+	projectCmd.Flags().StringP(
+		CMD_PROJECT_TEMPLATE_LONG, CMD_PROJECT_TEMPLATE_SHORT, "", CMD_PROJECT_TEMPLATE_USAGE)
+	projectCmd.Flags().StringP(
+		CMD_PROJECT_DESTINATION_LONG, CMD_PROJECT_DESTINATION_SHORT, "", CMD_PROJECT_DESTINATION_USAGE)
+	projectCmd.Flags().StringP(CMD_PROJECT_CONFIG_LONG, CMD_PROJECT_CONFIG_SHORT, "", CMD_PROJECT_CONFIG_USAGE)
+	rootCmd.AddCommand(projectCmd)
 }
 
-func gen(template, destination, config string) {
-	fmt.Println("===========================================================================")
+func project(template, destination, config string) {
 	fmt.Println(fmt.Sprintf("Generating a project from following directory: %s", template))
 	fmt.Println(fmt.Sprintf("The generated project will be in the following directory: %s", destination))
 	fmt.Println(fmt.Sprintf("Using the following configuration: %s", config))
-	fmt.Println("===========================================================================")
 
 	conf, err := services.ParseConfig(config)
 	if err != nil {

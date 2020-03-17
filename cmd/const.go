@@ -10,15 +10,15 @@ const (
 	CMD_LICENSE_SHORT = "l"
 	CMD_LICENSE_USAGE = "name of license for the project"
 
-	CMD_GEN_TEMPLATE_LONG  = "template"
-	CMD_GEN_TEMPLATE_SHORT = "t"
-	CMD_GEN_TEMPLATE_USAGE = "Sets the template directory in which to generate a project from"
+	CMD_PROJECT_TEMPLATE_LONG  = "template"
+	CMD_PROJECT_TEMPLATE_SHORT = "t"
+	CMD_PROJECT_TEMPLATE_USAGE = "Sets the template directory in which to generate a project from"
 
-	CMD_GEN_DESTINATION_LONG  = "destination"
-	CMD_GEN_DESTINATION_SHORT = "d"
-	CMD_GEN_DESTINATION_USAGE = "Sets the destination directory where the resulting project will be located"
+	CMD_PROJECT_DESTINATION_LONG  = "destination"
+	CMD_PROJECT_DESTINATION_SHORT = "d"
+	CMD_PROJECT_DESTINATION_USAGE = "Sets the destination directory where the resulting project will be located"
 
-	CMD_GEN_CONFIG_LONG  = "config"
-	CMD_GEN_CONFIG_SHORT = "c"
-	CMD_GEN_CONFIG_USAGE = "Sets the configuration file to be used during generation"
+	CMD_PROJECT_CONFIG_LONG  = "config"
+	CMD_PROJECT_CONFIG_SHORT = "c"
+	CMD_PROJECT_CONFIG_USAGE = "Sets the configuration file to be used during generation"
 )

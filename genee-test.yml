@@ -1,3 +1,6 @@
+template:
+  type: local
+  source: ./template
 vars:
   - name: service_name
     value: genee-test

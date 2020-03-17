@@ -96,7 +96,7 @@ func GenerateFiles(c *models.Config, template, destination string, filePaths []s
 			return err
 		}
 
-		fmt.Println(fmt.Sprintf("File: %s generated", file.Destination))
+		fmt.Println(fmt.Sprintf("Generated file: %s", file.Destination))
 	}
 
 	return nil
