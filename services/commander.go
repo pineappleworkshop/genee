@@ -10,13 +10,14 @@ func RunCommands(destination string, commands []string) error {
 		fmt.Println(fmt.Sprintf("Running: %s", command))
 		commandParsed := fmt.Sprintf("cd %s && %s", destination, command)
 		cmd := exec.Command("bash", "-c", commandParsed)
-		//stdout, err := cmd.Output()
-		_, err := cmd.Output()
+		stdout, err := cmd.CombinedOutput()
+		// _, err := cmd.CombinedOutput()
 		if err != nil {
+			fmt.Println(fmt.Sprint(err) + ": " + string(stdout))
 			return err
 		}
 
-		//fmt.Println(stdout)
+		// fmt.Println(string(stdout))
 	}
 
 	return nil
