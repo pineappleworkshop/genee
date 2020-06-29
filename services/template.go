@@ -3,6 +3,7 @@ package services
 import (
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 func ParseTemplateDirectory(path string) ([]string, []string, error) {
@@ -13,9 +14,13 @@ func ParseTemplateDirectory(path string) ([]string, []string, error) {
 				return err
 			}
 			if info.IsDir() {
-				dirs = append(dirs, path)
+				if info.Name() != ".git" {
+					dirs = append(dirs, path)
+				}
 			} else {
-				files = append(files, path)
+				if !strings.Contains(path, ".git") {
+					files = append(files, path)
+				}
 			}
 			return nil
 		},
