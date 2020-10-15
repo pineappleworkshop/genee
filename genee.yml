@@ -6,5 +6,5 @@ vars:
   - name: docker_registry
     value: pineappleworkshop
 commands:
-  - go mod init {{<service_name>}}
+  - go mod init {{.service_name}}
   - go mod tidy
