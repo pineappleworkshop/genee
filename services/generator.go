@@ -100,3 +100,11 @@ func GenerateFiles(c *models.Config, template, destination string, filePaths []s
 
 	return nil
 }
+
+func DeleteRoot(path string) error {
+	if err := os.RemoveAll(path); err != nil {
+		return err
+	}
+
+	return nil
+}
