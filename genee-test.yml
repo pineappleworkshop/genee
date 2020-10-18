@@ -11,5 +11,5 @@ vars:
   - name: db_name
     value: genee
 commands:
-  - go mod init {{<service_name>}}
+  - go mod init {{.service_name}}
   - go mod tidy
