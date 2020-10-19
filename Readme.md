@@ -72,6 +72,7 @@ work, the expected flags are:
 | -c, --config string      |      Sets the configuration file to be used during generation      |
 | -d, --destination string | Sets the destination directory where the resulting project will be |
 | -t, --template string    |  Sets the template directory in which to generate a project from   |
+| -r, --repo string        |  Sets the repository link in which to generate a project from      |
 
 
 You can also use "genee [command] --help" for more information about a command.
@@ -85,29 +86,37 @@ The project called `pw-go-template` (https://github.com/pineappleworkshop/pw-go-
 provides use a Go project scaffold with integration to MongoDB
 and the initial configuration to deploy your code in Kubernetes.
 
-First thing that needs to be done is cloning `pw-go-template`
-project into your projects/working directory
+Yoo don't need to clone `pw-go-template` project into your projects/working directory,
+but if you want, here's the command to do it:
 ```bash
 cd ~/Projects
 git clone git@github.com:pineappleworkshop/pw-go-template.git
 ```
 
 Then, copy in your projects/working the `genee-test.yml` file that
-is into the `pw-go-template` project.
-The `genee-test.yml` file has all the basic initial configuration file with all the
-variables and values needed by `genee` to generate the service.
+is into the `pw-go-template` project. If you didn't clone, pull a copy
+directly from github.
 ```bash
 cp pw-go-template/genee-test.yml .
 mv genee-test.yml genee.yml
 ```
 
+The `genee-test.yml` file has all the basic initial configuration file with all the
+variables and values needed by `genee` to generate the service.
 Edit the `genee.yml` and set the values for each of the variables
 declared in there.
 
 In the following line replace `SERVICE_NAME` with the value set
 on the `service_name` variable in `genee.yml`.
+
+If you cloned the repo locally:
 ```bash
 genee project -t ./pw-go-template -d SERVICE_NAME -c ./genee.yml
+```
+
+If you didn't clone:
+```bash
+genee project -r git@github.com:pineappleworkshop/pw-go-template.git -d SERVICE_NAME -c ./genee.yml
 ```
 
 Finally, go to the terminal, paste the line above (once you have replace
