@@ -4,7 +4,6 @@ import (
 	"errors"
 	"fmt"
 
-	"genee/models"
 	"genee/services"
 
 	"github.com/spf13/cobra"
@@ -20,14 +19,8 @@ var (
 			if err != nil {
 				errExit(err)
 			}
-
-			repo, err := cmd.Flags().GetString(CMD_PROJECT_REPO_LONG)
-			if err != nil {
-				errExit(err)
-			}
-
-			if template == "" && repo == "" {
-				err := errors.New("either `template / -t` or `repo / -r`  flag is required")
+			if template == "" {
+				err := errors.New("the `template / -t` flag is required")
 				errExit(err)
 			}
 
@@ -49,7 +42,7 @@ var (
 				errExit(err)
 			}
 
-			project(template, repo, destination, config)
+			project(template, destination, config)
 		},
 	}
 )
@@ -58,19 +51,13 @@ func init() {
 	projectCmd.Flags().StringP(
 		CMD_PROJECT_TEMPLATE_LONG, CMD_PROJECT_TEMPLATE_SHORT, "", CMD_PROJECT_TEMPLATE_USAGE)
 	projectCmd.Flags().StringP(
-		CMD_PROJECT_REPO_LONG, CMD_PROJECT_REPO_SHORT, "", CMD_PROJECT_REPO_USAGE)
-	projectCmd.Flags().StringP(
 		CMD_PROJECT_DESTINATION_LONG, CMD_PROJECT_DESTINATION_SHORT, "", CMD_PROJECT_DESTINATION_USAGE)
 	projectCmd.Flags().StringP(CMD_PROJECT_CONFIG_LONG, CMD_PROJECT_CONFIG_SHORT, "", CMD_PROJECT_CONFIG_USAGE)
 	rootCmd.AddCommand(projectCmd)
 }
 
-func project(template, repo, destination, config string) {
-	if template != "" {
-		fmt.Println(fmt.Sprintf("Generating a project from following directory: %s", template))
-	} else {
-		fmt.Println(fmt.Sprintf("Generating a project from following repository: %s", repo))
-	}
+func project(template, destination, config string) {
+	fmt.Println(fmt.Sprintf("Generating a project from following directory: %s", template))
 	fmt.Println(fmt.Sprintf("The generated project will be in the following directory: %s", destination))
 	fmt.Println(fmt.Sprintf("Using the following configuration: %s", config))
 
@@ -83,18 +70,6 @@ func project(template, repo, destination, config string) {
 		errExit(err)
 	}
 
-	if template != "" {
-		generateFromFolder(template, destination, conf)
-	} else {
-		generateFromRepo(repo, destination, conf)
-	}
-
-	if err := services.RunCommands(destination, conf.Commands); err != nil {
-		errExit(err)
-	}
-}
-
-func generateFromFolder(template string, destination string, conf *models.Config) {
 	dirs, files, err := services.ParseTemplateDirectory(template)
 	if err != nil {
 		errExit(err)
@@ -111,21 +86,8 @@ func generateFromFolder(template string, destination string, conf *models.Config
 	if err := services.GenerateFiles(conf, template, destination, files); err != nil {
 		errExit(err)
 	}
-}
 
-func generateFromRepo(repo string, destination string, conf *models.Config) {
-	commandParsed := fmt.Sprintf("git clone %s %s", repo, destination)
-	err := services.RunCommand(commandParsed)
-	if err != nil {
-		errExitClean(err, destination)
-	}
-
-	_, files, err := services.ParseTemplateDirectory(destination)
-	if err != nil {
-		errExitClean(err, destination)
-	}
-
-	if err := services.GenerateFiles(conf, destination, destination, files); err != nil {
-		errExitClean(err, destination)
+	if err := services.RunCommands(destination, conf.Commands); err != nil {
+		errExit(err)
 	}
 }

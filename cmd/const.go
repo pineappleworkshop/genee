@@ -14,10 +14,6 @@ const (
 	CMD_PROJECT_TEMPLATE_SHORT = "t"
 	CMD_PROJECT_TEMPLATE_USAGE = "Sets the template directory in which to generate a project from"
 
-	CMD_PROJECT_REPO_LONG  = "repo"
-	CMD_PROJECT_REPO_SHORT = "r"
-	CMD_PROJECT_REPO_USAGE = "Sets the repository link in which to generate a project from"
-
 	CMD_PROJECT_DESTINATION_LONG  = "destination"
 	CMD_PROJECT_DESTINATION_SHORT = "d"
 	CMD_PROJECT_DESTINATION_USAGE = "Sets the destination directory where the resulting project will be located"
